@@ -1,0 +1,27 @@
+import actividades.*
+import socios.*
+
+describe "prueba de socios" {
+	//un socio que hizo 2 viajes a la playa, con longitudes de 1000 y 2000 metros respectivamente, 
+	//y que tiene un máximo de 2 actividades.
+	const roque = new SocioTranquilo(edad= 25, maximoDeActividades = 2)
+	const playa1 = new ViajeDePlaya(largoDePlaya = 1000)
+	const playa2 = new ViajeDePlaya(largoDePlaya = 2000)
+	const ana = new SocioTranquilo(edad= 25, maximoDeActividades = 3)
+	const gimnasia1 = new ClasesDeGimnasia()
+		
+	fixture {
+		roque.realizaUnaActividad(playa1)
+		roque.realizaUnaActividad(playa2)
+		ana.realizaUnaActividad(playa1)
+		ana.realizaUnaActividad(playa2)
+		ana.realizaUnaActividad(gimnasia1)
+	}
+	test "roque" {
+		assert.that(roque.esAdoradorDelSol())
+		assert.throwsException({roque.realizaUnaActividad(new ClasesDeGimnasia())})
+	}
+	test "ana" {
+		assert.notThat(ana.esAdoradorDelSol())	
+	}
+}
