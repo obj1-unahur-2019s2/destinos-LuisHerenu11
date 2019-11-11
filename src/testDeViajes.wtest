@@ -1,0 +1,63 @@
+import actividades.*
+import socios.*
+
+describe "prueba de actividades" {
+	const excursion1 = new ExcursionACiudad(cantidadDeAtraccionesAVisitar = 4)
+	const tropical1 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 4)
+	const excursion2 = new ExcursionACiudad(cantidadDeAtraccionesAVisitar = 8)
+	const tropical2 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 8)
+	const tropical3 = new ExcursionACiudadTropical(cantidadDeAtraccionesAVisitar = 10)
+	const salida1 = new SalidaDeTrekking(kilometros = 100, diasDeSol = 130)
+	const salida2 =	new SalidaDeTrekking(kilometros = 50, diasDeSol = 240)
+	const salida3 =	new SalidaDeTrekking(kilometros = 250, diasDeSol = 130)
+	
+	test "excursion 1" {
+		//lleva 2 días, no implica esfuerzo, y no sirve para broncearse.
+		assert.equals(2,excursion1.cuantosDiasLLeva())
+		assert.notThat(excursion1.implicaEsfuerzo())
+		assert.notThat(excursion1.broncea())
+	}
+	test "tropical1" {
+		//lleva 3 días, no implica esfuerzo, y sí sirve para broncearse.
+		assert.equals(3,tropical1.cuantosDiasLLeva())
+		assert.notThat(tropical1.implicaEsfuerzo())
+		assert.that(tropical1.broncea())
+	}
+	test "excursion 2" {
+		//lleva 4 días, implica esfuerzo, y no sirve para broncearse.
+		assert.equals(4,excursion2.cuantosDiasLLeva())
+		assert.that(excursion2.implicaEsfuerzo())
+		assert.notThat(excursion2.broncea())
+	}
+	test "tropical 2" {
+		//lleva 5 días, implica esfuerzo, y sirve para broncearse
+		assert.equals(5,tropical2.cuantosDiasLLeva())
+		assert.that(tropical2.implicaEsfuerzo())
+		assert.that(tropical2.broncea())
+	}
+	test "tropical 3" {
+		//lleva 6 días, no implica esfuerzo, y sí sirve para broncearse.
+		assert.equals(6,tropical3.cuantosDiasLLeva())
+		assert.notThat(tropical3.implicaEsfuerzo())
+		assert.that(tropical3.broncea())
+	}
+	test "salida1" {
+		//lleva 2 días, implica esfuerzo, y no sirve para broncearse.
+		assert.equals(2,salida1.cuantosDiasLLeva())
+		assert.that(salida1.implicaEsfuerzo())
+		assert.notThat(salida1.broncea())
+	}
+	test "salida2" {
+		//lleva 1 día, no implica esfuerzo, y sí sirve para broncearse.
+		assert.equals(1,salida2.cuantosDiasLLeva())
+		assert.notThat(salida2.implicaEsfuerzo())
+		assert.that(salida2.broncea())
+	}
+	test "salida3" {
+		//lleva 5 días, implica esfuerzo, y sirve para broncearse.
+		assert.equals(5,salida3.cuantosDiasLLeva())
+		assert.that(salida3.implicaEsfuerzo())
+		assert.that(salida3.broncea())
+	}	
+}
+
